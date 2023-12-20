@@ -5,7 +5,6 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to the Stock Market Dashboard</h1>
-      <p>This is a simple example. Customize and enhance as needed.</p>
     </div>
   );
 };
