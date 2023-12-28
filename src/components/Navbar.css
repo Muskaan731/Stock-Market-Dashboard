@@ -6,7 +6,7 @@
   padding: 10px;
   color: #fff;
   height: 60px; 
-  overflow: hidden; /* Hide overflow content */
+  overflow: hidden; 
 }
 
 .dark-theme{
@@ -33,7 +33,7 @@
 .nav-links ul {
   padding: 0;
   margin: 0;
-  display: flex; /* Display the list horizontally */
+  display: flex; 
   list-style: none;
 }
 
@@ -67,7 +67,6 @@
   background-color: #0056b3;
 }
 
-/* Placeholder for .greeting */
 .greeting {
   margin-left: 20px;
 }
@@ -79,23 +78,23 @@
     align-items: flex-end; 
     position: fixed;
     top: 60px;
-    right: -25%; /* Initially off-screen */
+    right: -25%;
     width: 25%;
     max-width: 250px;
     background-color: #007bff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease-in-out; 
-    z-index: 1; /* Ensure it appears above other content */
+    z-index: 1; 
   }
 
   .nav-links.show {
-    right: 0; /* Slide in when active */
+    right: 0;
   }
 
   .nav-links ul {
     flex-direction: column;
     width: 100%;
-    text-align: right; /* Align text to the right */
+    text-align: right;
   }
 
   .nav-links li {
@@ -108,18 +107,32 @@
     font-size: 1.5rem;
   }
 
-  /* Add padding to the content area */
+  
   .content {
-    padding-right: 30%; /* Adjust the padding as needed */
-    transition: padding-right 0.3s ease-in-out; /* Smooth transition */
+    padding-right: 30%; 
+    transition: padding-right 0.3s ease-in-out; 
   }
 
   .nav-links.show + .content {
-    padding-right: 0; /* Remove padding when the menu is active */
+    padding-right: 0;
   }
 
   .greeting {
-    /* Adjust styles for smaller screens if needed */
     margin: 20px;
   }
+}
+
+
+.edit-toggle {
+  background-color: #28a745; 
+  color: #fff;
+  border: none;
+  padding: 8px 12px;  
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 5px; 
+}
+
+.edit-toggle:hover {
+  background-color: #218838;
 }

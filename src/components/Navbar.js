@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = ({ email, onThemeToggle }) => {
+const Navbar = ({ email, onThemeToggle, onCheckboxChange  }) => {
   const [showNavLinks, setShowNavLinks] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [showEditDropdown, setShowEditDropdown] = useState(false);
+  const [showSearchInput, setShowSearchInput] = useState(true);
 
   const toggleNavLinks = () => {
     setShowNavLinks(!showNavLinks);
@@ -13,6 +15,21 @@ const Navbar = ({ email, onThemeToggle }) => {
   const toggleTheme = () => {
     setIsDarkTheme((prevTheme) => !prevTheme);
     onThemeToggle(!isDarkTheme);
+  };
+
+  const toggleEditDropdown = () => {
+    setShowEditDropdown(!showEditDropdown);
+  };
+
+  const handleCheckboxChange = (feature) => {
+    switch (feature) {
+      case 'searchInput':
+        setShowSearchInput(!showSearchInput);
+        onCheckboxChange('searchInput', !showSearchInput);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -28,7 +45,6 @@ const Navbar = ({ email, onThemeToggle }) => {
           <li>
             <Link to="/register">Register</Link>
           </li>
-          {/* Add your other navigation links here */}
         </ul>
         {email && <p className="greeting">Hi, {email}!</p>}
       </div>
@@ -41,6 +57,22 @@ const Navbar = ({ email, onThemeToggle }) => {
       <button className="theme-toggle" onClick={toggleTheme}>
         Toggle Theme
       </button>
+      <button className="edit-toggle" onClick={toggleEditDropdown}>
+        Edit
+      </button>
+      {showEditDropdown && (
+        <div className="edit-dropdown">
+          <label>
+            <input
+              type="checkbox"
+              checked={showSearchInput}
+              onChange={() => handleCheckboxChange('searchInput')}
+            />
+            Search Stocks
+          </label>
+          
+        </div>
+      )}
     </nav>
   );
 };

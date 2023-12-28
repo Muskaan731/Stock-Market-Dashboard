@@ -1,15 +1,16 @@
+// Dashboard.js
 import React, { useState, useEffect } from 'react';
 import StockListService from '../services/StockListService';
 import StockMarketService from '../services/StockMarketService';
 import StockChart from './StockChart';
 import './Dashboard.css';
 
-const Dashboard = ({ isDarkTheme }) => {
+const Dashboard = ({ isDarkTheme, showSearchInput }) => {
   const [stock, setStock] = useState([]);
   const [selectedStock, setSelectedStock] = useState(null);
   const [historicalData, setHistoricalData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortOrder, setSortOrder] = useState('asc'); 
+  const [sortOrder, setSortOrder] = useState('asc');
 
   useEffect(() => {
     const fetchStockData = async () => {
@@ -28,7 +29,6 @@ const Dashboard = ({ isDarkTheme }) => {
     try {
       const stockData = await StockMarketService.getStockData(symbol);
       const historicalData = await StockMarketService.getHistoricalData(symbol);
-
       setSelectedStock(stockData);
       setHistoricalData(historicalData);
     } catch (error) {
@@ -39,10 +39,6 @@ const Dashboard = ({ isDarkTheme }) => {
   const handleSearchInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
-
-  const filteredStocks = stock.filter((stockItem) =>
-    stockItem.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   const handleSortClick = () => {
     const sortedStock = [...stock].sort((a, b) => {
@@ -60,18 +56,27 @@ const Dashboard = ({ isDarkTheme }) => {
     setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
 
+  const filteredStocks = stock.filter((stockItem) =>
+    stockItem.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className={`dashboard-container ${isDarkTheme ? 'dark-theme' : ''}`}>
       <div className="stock-list">
         <h3>Top 100 Stocks</h3>
-        <input
-          className="searchStocks"
-          type="text"
-          placeholder="Search stocks..."
-          value={searchTerm}
-          onChange={handleSearchInputChange}
-        />
-        <button className="sortBtn" onClick={handleSortClick}>
+        {showSearchInput && (
+          <input
+            className="searchStocks"
+            type="text"
+            placeholder="Search stocks..."
+            value={searchTerm}
+            onChange={handleSearchInputChange}
+          />
+        )}
+        <button
+          className={`sortBtn ${filteredStocks.length > 0 ? '' : 'hidden'}`}
+          onClick={handleSortClick}
+        >
           Sort
         </button>
         <div className="stock-cards">
@@ -87,15 +92,13 @@ const Dashboard = ({ isDarkTheme }) => {
         </div>
       </div>
       <div className="selected-stock">
-        {selectedStock ? (
+        {selectedStock && (
           <div className="stock-details">
             <h3>Selected Stock</h3>
             <p className="stock-name">{selectedStock.companyName}</p>
             <p>Symbol: {selectedStock.symbol}</p>
             <p>Latest Price: ${selectedStock.latestPrice}</p>
           </div>
-        ) : (
-          <p>Select a stock to view details</p>
         )}
         {historicalData.length > 0 && (
           <div className="stock-chart">
