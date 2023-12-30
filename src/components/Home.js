@@ -4,7 +4,8 @@ import React from 'react';
 const Home = () => {
   return (
     <div>
-      <h1>Welcome to the Stock Market Dashboard</h1>
+      <h1>Welcome to the Stock Market </h1>
+      
     </div>
   );
 };

@@ -1,0 +1,47 @@
+# Project Overview
+
+This project is a stock market application that provides users with real-time stock data, interactive charts, and a customizable dashboard. Users can register and log in to access personalized features, such as creating a customized dashboard with various widgets, searching and filtering stocks, and viewing graphical representations of stock trends. The application is designed for web platforms, ensuring a seamless experience for users.
+
+# Setup and Installation Instructions
+
+## Prerequisites
+- Node.js installed (version X.X.X)
+- NPM installed (version X.X.X)
+
+## Steps
+Clone the repository.
+   git clone https://github.com/your-username/your-project.git
+Navigate to the project directory: cd your-project
+                                    npm install
+Run the application.:  npm start
+
+
+Features List and Descriptions
+
+User Authentication :
+Description: Enables users to register and log in to the application.
+Implementation: Utilizes a secure authentication mechanism to manage user accounts.
+
+Real-Time Stock Data:
+Description: Fetches and displays real-time stock data using external APIs.
+Implementation: Utilizes APIs such as IEX Cloud to retrieve up-to-date stock information.
+
+Interactive Charts:
+Description: Presents graphical representations of stock trends for better analysis.
+Implementation: Uses charting libraries like Chart.js to create interactive and visually appealing charts.
+
+Customizable Dashboard:
+Description: Allows users to add, remove, and rearrange widgets on their dashboard.
+Implementation: I have added a checkbox for that, if the check box is checked, the search will appear/disappear.
+
+Search and Filter:
+Description: Provides users with the ability to search for specific stocks and apply filters.
+Implementation: Search Functionality is added to filter records. 
+
+Mobile Responsiveness:
+Description: Ensures a seamless user experience on both web and mobile platforms.
+Implementation: Utilizes responsive design principles and React Native for mobile compatibility.
+
+User Settings;
+Description: Offers customizable user settings such as theme toggles and notification preferences.
+Implementation: Stores user preferences in a secure manner and provides an intuitive settings interface.
